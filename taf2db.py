@@ -19,7 +19,8 @@ def main(taf_path) -> None:
         df = df[["LV", "Name", "ShortName", "Code", "Type"]]
         df['Type'] = df['Type'].apply(lambda x: "CLUB" if x == 0 else "LG")
 
-        df = df.rename(columns={"LV": "lv", "Name": "name", "ShortName": "shortName", "Code": "id", "Type": "type"})
+        df = df.drop(columns=['ShortName'])
+        df = df.rename(columns={"LV": "lv", "Name": "name", "Code": "id", "Type": "type"})
 
         df.to_sql('Club', conn, if_exists='replace', index=False)
         os.remove('clubs.json')
