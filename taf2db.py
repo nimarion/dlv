@@ -42,7 +42,7 @@ def main(taf_path) -> None:
         df = df[["ExternalId", "Code", "Firstname", "Lastname", "ClubCode", "Nation", "Yob", "Gender", "WorldAthleticsId"]]
 
         df['WorldAthleticsId'] = df['WorldAthleticsId'].apply(lambda x: None if x == 0 else int(x))
-        df["Gender"] = df['Gender'].apply(lambda x: "M" if x == 0 else "W")
+        df["Gender"] = df['Gender'].apply(lambda x: "MALE" if x == 0 else "FEMALE")
 
         df = df.rename(columns={"Code": "id", "ExternalId": "guid", "Firstname": "firstname", "Lastname": "lastname", "ClubCode": "clubId", "Nation": "country", "Yob": "birthyear", "Gender": "sex", "WorldAthleticsId": "worldAthleticsId" })
 
